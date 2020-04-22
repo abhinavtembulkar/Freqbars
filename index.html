@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreqBars</title>
+    <link rel="stylesheet" href="freqbars.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+</head>
+<body>
+    <button id="plays" onclick="togglePlay()"><b>LOADING.......</b></button>
+    <input type="search" id="types" onsearch="search()" />
+    <input type="range" min="1" max="255" value="180" class="slider" id="ranges" oninput="slides()"/>
+    <button id="reset" onclick="resets()"><b>180</b></button>
+</body>
+    <script src="freqbars.js"></script>
+</html>
