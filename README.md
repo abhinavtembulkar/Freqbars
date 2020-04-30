@@ -19,7 +19,7 @@ Project is hosted at : https://abhinavtembulkar.github.io/freqbars/
 7.Incase of confusion, just sit back and relax! website will start with default settings.
 
 ## Screenshots
-![](/images/bars.PNG)
+<img src="https://abhinavtembulkar.github.io/freqbars/images/bars.PNG" height="400px" width="400px">
 
 ## Demo
 ![](/images/beatss.gif)
