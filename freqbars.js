@@ -102,7 +102,7 @@ function slides(){
 
 function resets(){
     if(state==="song") fval = 180
-    else fval = 100
+    else fval = 160
 
     reset.innerHTML=fval
     document.getElementById("ranges").value=fval
