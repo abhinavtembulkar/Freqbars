@@ -8,7 +8,7 @@ Project is hosted at : https://abhinavtembulkar.github.io/freqbars/
 
 2.Type the name you want to play inside search bar.
 
-3.Only Songs in MUSIC folder of this repository will play and visualize.
+3.Only Songs in MUSIC folder of this repository will play and visualize, otherwise none will play.
 
 4.To Visualize other songs , PAUSE and enable mic and play/sing in front of mic, Visulaizer will visulaize the audio!
 
