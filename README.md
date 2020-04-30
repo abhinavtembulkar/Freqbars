@@ -1,7 +1,7 @@
 # Freqbars
 A CRAZY music visualization based on p5.js library.Utilizes frequency spectrum of song to generate this visualization.
 
-Project is hosted at : https://abhinavtembulkar.github.io/freqbars/
+Project is hosted at : https://abhinavtembulkar.github.io/Freqbars/
 
 ## Instructions
 1.Enable Mic
@@ -19,7 +19,7 @@ Project is hosted at : https://abhinavtembulkar.github.io/freqbars/
 7.Incase of confusion, just sit back and relax! website will start with default settings.
 
 ## Screenshots
-<img src="https://abhinavtembulkar.github.io/freqbars/images/bars.PNG" height="400px" width="400px">
+<img src="https://abhinavtembulkar.github.io/Freqbars/images/bars.PNG" height="400px" width="400px">
 
 ## Demo
 ![](/images/beatss.gif)
