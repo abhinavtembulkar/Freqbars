@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreqBars</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="freqbars.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"
+        integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+    <title>FreqBars</title>
 </head>
+
 <body>
-    <button id="plays" onclick="togglePlay()"><b>LOADING.......</b></button>
-    <input type="search" id="types" onsearch="search()" />
+    <div id="snackbar">Loading...</div> 
+    <button id="play" onclick="togglePlay()"><b>LOADING.......</b></button>
+
+    <label for="songs">Choose song:</label>
+    <select name="songs" id="songs">
+        <option value="sahara">sahara</option>
+        <option value="El">El</option>
+        <option value="krewella">krewella</option>
+    </select>
+    <label for="get-files">Upload song:</label>
+    <input type="file" name="client-file" id="get-files" />
+
     <button style="color:azure; background-color: black;">Sensitivity: </button>
-    <input type="range" min="1" max="255" value="180" class="slider" id="ranges" oninput="slides()"/>
+    <input type="range" min="1" max="255" value="180" class="slider" id="ranges" oninput="slides()" />
     <button id="reset" onclick="resets()"><b>180</b></button>
 </body>
-    <script src="freqbars.js"></script>
+<script src="freqbars.js"></script>
+
 </html>
