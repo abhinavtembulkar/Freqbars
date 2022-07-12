@@ -1,24 +1,30 @@
-var myheight = 590
-var mywidth = 1275
+const songButton = document.getElementById('play')
+const inp = document.getElementById("get-files");
+const songs = document.getElementById("songs")
+const snacker = document.getElementById("snackbar");
 
-var smth = 0.9
-var bins = 1024
-var strength = 150
-var fval = 180
-var maxx = 0
-var maxval=255
+let myheight = 590
+let mywidth = 1275
 
-var mic
-var song 
-var maxxspec
-var fft
-var state="song"
+let smth = 0.9
+let bins = 1024
+let strength = 150
+let fval = 180
+let maxx = 0
+let maxval=255
+
+let mic
+let song 
+let maxxspec
+let fft
+let state="song"
 
 function setup(Song = `sahara`){
     createCanvas(mywidth,myheight)
     background(0)
+    alerter_show()
 
-    song = loadSound(`./MUSIC/${Song}.mp3`,togglePlay)
+    song = loadSound(`./MUSIC/${Song}.mp3`, success, failed, loading)
 
     mic = new p5.AudioIn()
     mic.start()
@@ -27,8 +33,38 @@ function setup(Song = `sahara`){
     fft.setInput(song)
 }
 
+const success = () => {
+    console.log('SUCCESS');
+    snacker.innerHTML = "Tap here to play";
+    snacker.onclick = () => {
+        song.play();
+        songButton.innerHTML = "Pause(mic)";
+        alerter_hide();
+    }
+}
+
+const failed = () => {
+    snacker.innerHTML = "Failed to load song, reload page";
+    console.log('FAILED');
+}
+
+const loading = (progress) => {
+    snacker.innerHTML = `Loading... ${(progress * 100).toFixed(0)} %`;
+}
+
+function typed() {
+    if (song.isPlaying()) {
+        song.stop()
+    }
+    else {
+        song.play()
+        fft.setInput(song)
+        songButton.innerHTML='pause(mic)'
+        alerter_hide()
+    }
+}
+
 function togglePlay() {
-    let songButton = document.getElementById('plays')
     
     if(song.isPlaying()){
         song.pause()
@@ -40,7 +76,7 @@ function togglePlay() {
     }
     else{
         song.play()
-        songButton.innerHTML='pause'
+        songButton.innerHTML='pause(mic)'
         maxval=255
         fval=180
         state="song"
@@ -54,23 +90,23 @@ function draw()
 
     spectrum = fft.analyze()
     //console.log(spectrum)
-    var imaxx = 0
+    let imaxx = 0
 
     //check()
     maxxspec = max(spectrum)
     //console.log(maxxspec)
 
-    for(var i=0;i<bins;i++)
+    for(let i=0;i<bins;i++)
     {
-        var f = map(i,0,bins,1,23714)
+        let f = map(i,0,bins,1,23714)
 
         if(fft.getEnergy(f,f+1) >= strength)
         {
             if(maxxspec<fval) strength = maxxspec
             else strength = fval
 
-            var x = map(i,0,bins/4,0,width)
-            var y = map(spectrum[i],strength,255,height,height/2)
+            let x = map(i,0,bins/4,0,width)
+            let y = map(spectrum[i],strength,255,height,height/2)
 
             colorx = map(x,0,width/2,0,255)
             colory = map(spectrum[i],strength,255,0,maxval)
@@ -85,11 +121,30 @@ function draw()
 
 //HTML
 //<-------------------------------->
-function search(){
-    let str = document.getElementById('types').value
+inp.onchange = (event) => {
+    console.log(event)
     song.stop()
-    console.log(str)
-    setup(str)
+    alerter_show()
+    song = loadSound(event.target.files[0], typed, failed, loading)
+    const dropdown = document.createElement("option")
+    const songname = event.target.files[0].name
+    dropdown.text = songname.substr(0, 8)
+    songs.add(dropdown)
+}
+
+songs.oninput = (event) => {
+    alerter_show()
+    console.log(event.target.value)
+    song.stop()
+    song = loadSound(`./MUSIC/${event.target.value}.mp3`, typed, failed, loading)
+}
+
+function alerter_show() {
+    snacker.className = "show"
+}
+
+function alerter_hide() {
+    snacker.className = ""
 }
 
 let reset = document.getElementById('reset')
@@ -97,7 +152,6 @@ let reset = document.getElementById('reset')
 function slides(){
     fval = document.getElementById("ranges").value
     reset.innerHTML=fval
-    console.log(fval)
 }
 
 function resets(){
